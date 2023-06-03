@@ -1,0 +1,114 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+    <h4>CineApp</h4>
+    <span class="example-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="opened" mode="over">
+    <mat-list>
+      <mat-list-item routerLinkActive="active" [routerLink]="['inicio']">
+        <mat-icon>dashboard</mat-icon>&ensp;Tablero central
+      </mat-list-item>
+    </mat-list>
+
+    <mat-divider></mat-divider>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon>attach_money</mat-icon>&ensp;Ventas
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item routerLinkActive="active" [routerLink]="['ventas/funciones']">
+            <mat-icon>movie</mat-icon>&ensp;Funciones
+          </mat-list-item>
+
+          <mat-list-item routerLinkActive="active" [routerLink]="['ventas/dulceria']">
+            <mat-icon>fastfood</mat-icon>&ensp;Dulceria
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+
+    <mat-divider></mat-divider>
+
+    <mat-list>
+      <mat-list-item class="list-padding" routerLinkActive="active" [routerLink]="['gestion/programacion']">
+        <mat-icon>schedule</mat-icon>&ensp;Programación
+      </mat-list-item>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-icon>food_bank</mat-icon>&ensp;Administración de Productos
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/unidades']">
+              <mat-icon>local_offer</mat-icon>&ensp;Lista de unidades
+            </mat-list-item>
+            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/unidades/crear']">
+              <mat-icon>local_offer</mat-icon>&ensp;Agregar unidad
+            </mat-list-item>
+            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/insumos']">
+              <mat-icon>kitchen</mat-icon>&ensp;Lista de Insumos
+            </mat-list-item>
+            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/insumos/crear']">
+              <mat-icon>kitchen</mat-icon>&ensp;Agregar Insumo
+            </mat-list-item>
+            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/']">
+              <mat-icon>local_dining</mat-icon>&ensp;Lista de productos
+            </mat-list-item>
+            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/crear']">
+              <mat-icon>local_dining</mat-icon>&ensp;Agregar producto
+            </mat-list-item>
+            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/alta']">
+              <mat-icon>add_shopping_cart</mat-icon>&ensp;Alta de mercancías
+            </mat-list-item>
+
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-list>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon>person</mat-icon>&ensp;Administración de usuarios
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/usuarios']">
+            <mat-icon>people</mat-icon>&ensp;Lista de usuarios
+          </mat-list-item>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/usuarios/crear']">
+            <mat-icon>person_add</mat-icon>&ensp;Agregar usuario
+          </mat-list-item>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/usuarios/roles']">
+            <mat-icon>supervisor_account</mat-icon>&ensp;Lista de roles
+          </mat-list-item>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/usuarios/roles/crear']">
+            <mat-icon>group_add</mat-icon>&ensp;Agregar Rol
+          </mat-list-item>
+
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-divider></mat-divider>
+
+    <mat-list>
+      <mat-list-item routerLinkActive="active" (click)="logOut()">
+        <mat-icon>exit_to_app</mat-icon> &ensp;Salir
+      </mat-list-item>
+    </mat-list>
+
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

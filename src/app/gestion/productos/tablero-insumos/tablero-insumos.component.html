@@ -1,0 +1,83 @@
+<div class="w-full p-5">
+
+
+    <p class="font-light text-xl">Vista general de insumos</p>
+
+
+    <mat-card class="mt-10">
+
+        <mat-card-header>
+            <mat-card-title>Filtrar por</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="mt-5">
+
+            <div class="flex items-center">
+                <div>
+                    <mat-form-field class="text-xs w-80" appearance="fill">
+                        <mat-label>Filtrar nombre</mat-label>
+                        <input matInput placeholder="Nombre" [(ngModel)]="filter">
+                        <mat-icon [color]="'primary'" matSuffix><i class="fa fa-filter fa-sm"></i></mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div class="mx-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Unidades</mat-label>
+                        <mat-select multiple [(ngModel)]="selectedUnidades">
+                            <mat-option *ngFor="let unidad of unidades" [value]="unidad.id">{{unidad.nombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="mx-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ordenar por</mat-label>
+                        <mat-select multiple [(ngModel)]="selectedOrder">
+                            <mat-option [value]="1">MAYOR A MENOR PRECIO</mat-option>
+                            <mat-option [value]="2">MENOR A MAYOR PRECIO</mat-option>
+                            <mat-option [value]="3">MAYOR A MENOR STOCK</mat-option>
+                            <mat-option [value]="4">MENOR A MAYOR STOCK</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                
+                <div class="flex items-center ml-6">
+                    <button class="h-10 w-40" mat-flat-button [color]="'primary'" (click)="search()">Buscar
+                        <mat-icon>search</mat-icon></button>
+                </div>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+
+
+
+    <mat-card class="mt-5">
+        <mat-card-content class="flex justify-center">
+            <table class="table w-full">
+                <thead>
+                    <tr class="border-blue-400 border">                        
+                        <th>Nombre</th>
+                        <th>Stock</th>
+                        <th>Precio por unidad</th>
+                        <th>Unidad</th>    
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="insumos.length > 0">
+                    <tr *ngFor="let insumo of insumos" class="bg-slate-200 border-blue-400 border">
+                        <td>{{insumo.nombre}}</td>                                               
+                        <td>{{insumo.stock}}</td>          
+                        <td>{{insumo.precio}}</td>          
+                        <td>{{insumo.unidad.nombre}}</td>          
+                        <td> <button mat-flat-button [color]="'primary'" [routerLink]="'/app/gestion/productos/insumos/editar/'+insumo.id">Editar</button> </td>                        
+                    </tr>
+                </tbody>
+            </table>
+            <mat-paginator class="w-full" [length]="totalInsumos" [pageSize]="20" [pageIndex]="currentPage">
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+
+</div>

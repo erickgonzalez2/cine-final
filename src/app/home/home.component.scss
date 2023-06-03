@@ -1,0 +1,21 @@
+@import "../../styles";
+
+mat-grid-tile {
+    background: $light-primary-color
+}
+
+
+.reloj {
+    background: $accent ;
+    color: white;
+    text-align: center;
+}
+
+.hora {
+    font-size: 50px
+}
+
+.fecha {
+    font-size: 35px;
+    margin-top: 1em;
+}

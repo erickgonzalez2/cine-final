@@ -1,0 +1,56 @@
+<div class="w-full p-5">
+
+
+    <p class="font-light text-xl">Vista general de roles</p>
+
+
+    <mat-card class="mt-10">
+
+        <mat-card-header>
+            <mat-card-title>Filtrar por</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="mt-5">
+
+            <div class="flex items-center">
+                <div>
+                    <mat-form-field class="text-xs w-80" appearance="fill">
+                        <mat-label>Filtrar por nombre</mat-label>
+                        <input matInput placeholder="Nombre" [(ngModel)]="filter">
+                        <mat-icon [color]="'primary'" matSuffix><i class="fa fa-filter fa-sm"></i></mat-icon>
+                    </mat-form-field>
+                </div>
+                
+                <div class="flex items-center ml-6">
+                    <button class="h-10 w-40" mat-flat-button [color]="'primary'" (click)="search()">Buscar
+                        <mat-icon>search</mat-icon></button>
+                </div>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+
+
+
+    <mat-card class="mt-5">
+        <mat-card-content class="flex justify-center">
+            <table class="table w-full">
+                <thead>
+                    <tr class="border-blue-400 border">                        
+                        <th>Rol</th>                        
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="roles.length > 0">
+                    <tr *ngFor="let rol of roles" class="bg-slate-200 border-blue-400 border">                        
+                        <td>{{rol.nombre}}</td>                                          
+                        <td> <button mat-flat-button [color]="'primary'" [routerLink]="'/app/gestion/usuarios/roles/editar/'+rol.id">Editar</button> </td>                        
+                    </tr>
+                </tbody>
+            </table>
+            <mat-paginator class="w-full" [length]="totalRoles" [pageSize]="20" [pageIndex]="currentPage">
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+
+</div>

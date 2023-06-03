@@ -1,0 +1,66 @@
+@import "../../styles";
+
+mat-toolbar{
+    background: $dark-primary-color;
+    color: $text-icons;
+}        
+mat-sidenav-container{
+    height: calc( 205vh - 115vh );
+}
+
+mat-list mat-icon{
+    color: #000000;
+}
+
+mat-sidenav{
+    width: 250px;
+    background: $text-icons;    
+}
+    
+mat-list-item{
+    cursor: pointer;
+    color: black;
+    font-size: 12px !important;
+    line-height: 1.25rem;
+}
+
+mat-list-item:hover, mat-list-item:hover mat-icon{
+    font-weight: 500;
+    background: $dark-primary-color;    
+    color: white;
+    fill: white;
+}
+
+mat-expansion-panel-header{
+    cursor: pointer;
+    color: black;
+    font-size: 12px !important;
+    line-height: 1.25rem;
+    width: 250px;
+}
+
+mat-expansion-panel-header:hover, mat-expansion-panel-header:hover mat-icon{
+    font-weight: 500;
+    background: $dark-primary-color !important;    
+    color: white !important;        
+}
+
+mat-expansion-panel{
+    border-radius: 0 !important;    
+}
+
+ng-deep mat-expansion-panel-body{
+    padding: 0 !important;
+}
+
+.list-padding{
+    padding-left: 8px !important;
+}
+
+mat-divider{
+    border: 1px solid rgba($color: #000000, $alpha: 0.3);
+}
+.example-spacer {
+    flex: 1 1 auto
+}
+  

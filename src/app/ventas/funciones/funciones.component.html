@@ -1,0 +1,14 @@
+<div class="w-full flex justify-end h-16">
+<mat-form-field appearance="fill" class="w-1/4">
+  <mat-label>Selecciona una fecha</mat-label>
+  <input matInput [matDatepicker]="datepicker" [(ngModel)]="dateChoose">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+  <mat-datepicker #datepicker>
+    <mat-datepicker-actions>
+      <button mat-button matDatepickerCancel>Cancelar</button>
+      <button mat-raised-button color="primary" matDatepickerApply (click)="findFunctions()">Aplicar</button>
+    </mat-datepicker-actions>
+  </mat-datepicker>
+</mat-form-field>
+</div>  

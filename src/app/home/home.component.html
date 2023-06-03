@@ -1,0 +1,16 @@
+
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>Aquí se vera grafica de pastel del balance de ventas entradas y dulceria</mat-grid-tile>
+  <mat-grid-tile>Aquí se vera el total de ventas del día</mat-grid-tile>  
+  <mat-grid-tile>Indicadores de consumo</mat-grid-tile>
+  <mat-grid-tile class="reloj">
+
+    <div>
+      <p class="hora">{{hora | date : 'hh:mm:ss a'}}</p>
+      <p class="fecha">{{fecha | date :'EEEE dd  MMMM YYYY' }}</p>      
+
+    </div>
+
+
+  </mat-grid-tile>
+</mat-grid-list>
