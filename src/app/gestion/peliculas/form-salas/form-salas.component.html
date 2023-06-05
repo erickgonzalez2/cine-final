@@ -1,0 +1,63 @@
+<div class="w-full p-10">
+
+    <p class="font-light text-xl" *ngIf="!edit">Crear Sala</p>
+    <p class="font-light text-xl" *ngIf="edit">Editar Sala</p>
+
+    <mat-card class="mt-10">
+        <mat-card-content>
+
+            <form [formGroup]="salaForm">
+
+                <div class="grid grid-cols-4">
+
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>No. de sala</mat-label>
+                            <input type="number" matInput formControlName="no_sala">
+                            <mat-error>El <strong>número de sala</strong> es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>No. filas</mat-label>
+                            <input type="number" matInput formControlName="no_filas">
+                            <mat-error>El <strong>número de filas</strong> es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>No. asientos por fila</mat-label>
+                            <input type="number" matInput formControlName="no_asientos">
+                            <mat-error>El <strong>número de asientos </strong> es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-slide-toggle class="mt-2" [color]="'primary'"
+                            formControlName="estado">Estado</mat-slide-toggle>
+                    </div>
+
+
+                    <div class="col-span-1 col-start-4 p-2 self-center">
+
+                        <button class="w-full " mat-flat-button [color]="'primary'" (click)="saveSala()"
+                            *ngIf="!edit">Crear</button>
+                        <button class="w-full " mat-flat-button [color]="'primary'" (click)="updateSala()"
+                            *ngIf="edit">Actualizar</button>
+                    </div>
+
+
+
+                </div>
+
+
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+
+</div>

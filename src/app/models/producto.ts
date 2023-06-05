@@ -10,5 +10,5 @@ export class Producto{
     costo : number;
     tipoProducto : string;
     stock : number;
-    productoInsumos : ProductoInsumos[] = [];    
+    insumos : ProductoInsumos[] = [];    
 }

@@ -25,8 +25,19 @@
                     <mat-form-field appearance="fill">
                         <mat-label>Tipo de producto</mat-label>
                         <mat-select multiple [(ngModel)]="selectedTipos">
-                            <mat-option  [value]="1">Producto Fabrica</mat-option>
-                            <mat-option  [value]="2">Producto Compuesto</mat-option>
+                            <mat-option  [value]="'FABRICA'">Producto Fabrica</mat-option>
+                            <mat-option  [value]="'COMPUESTO'">Producto Compuesto</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="mx-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ordenar por</mat-label>
+                        <mat-select multiple [(ngModel)]="selectedOrder">
+                            <mat-option [value]="1">MAYOR A MENOR PRECIO</mat-option>
+                            <mat-option [value]="2">MENOR A MAYOR PRECIO</mat-option>
+                            <mat-option [value]="3">MAYOR A MENOR STOCK</mat-option>
+                            <mat-option [value]="4">MENOR A MAYOR STOCK</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -53,6 +64,7 @@
                         <th>Precio</th>
                         <th>Costo</th>
                         <th>Stock</th>
+                        <th>Editar</th>
                     </tr>
                 </thead>
                 <tbody *ngIf="productos.length > 0">
@@ -62,8 +74,9 @@
                         <td>{{producto.tipoProducto}}</td>
                         <td>{{producto.precio}}</td>
                         <td>{{producto.costo}}</td>                        
-                        <td>{{producto.stock}}</td>                        
-                        <td> <button mat-flat-button [color]="'primary'" [routerLink]="'/app/gestion/usuarios/editar/'+producto.id">Editar</button> </td>                        
+                        <td *ngIf="producto.tipoProducto == 'FABRICA'">{{producto.stock}}</td>                        
+                        <td *ngIf="producto.tipoProducto == 'COMPUESTO'">N / A</td>                        
+                        <td> <button mat-flat-button [color]="'primary'" [routerLink]="'/app/gestion/productos/editar/'+producto.id">Editar</button> </td>                        
                     </tr>
                 </tbody>
             </table>

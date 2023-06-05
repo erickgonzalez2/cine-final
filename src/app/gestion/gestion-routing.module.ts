@@ -6,7 +6,8 @@ import { GestionComponent } from './gestion.component';
 const routes: Routes = [
     {path : '',component : GestionComponent,}, 
     {path : 'usuarios', loadChildren : () => import('./usuarios/usuarios.module').then(m => m.UsuariosModule)},
-    {path : 'productos', loadChildren : () => import('./productos/productos.module').then(m => m.ProductosModule)}
+    {path : 'productos', loadChildren : () => import('./productos/productos.module').then(m => m.ProductosModule)},
+    {path : 'peliculas', loadChildren : () => import('./peliculas/peliculas.module').then(m => m.PeliculasModule)}
   ];
 
   @NgModule({

@@ -7,7 +7,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { UserLoggedGuard } from './auth/user-logged.guard';
 
 const routes: Routes = [
-  {path : '',component: LoginComponent,canActivate : [UserLoggedGuard]},     
+  {path : '',component: LoginComponent,},     
   {path : 'login',component: LoginComponent, canActivate : [UserLoggedGuard]},     
   {path : 'app',component : MenuComponent,
   children:[

@@ -1,7 +1,7 @@
-<div class="w-full p-10" >
+<div class="w-full p-10">
 
-    <p class="font-light text-xl" *ngIf="!edit">Crear usuario</p>
-    <p class="font-light text-xl" *ngIf="edit">Editar usuario</p>
+    <p class="font-light text-xl" *ngIf="!edit">Crear producto</p>
+    <p class="font-light text-xl" *ngIf="edit">Editar producto</p>
 
     <mat-card class="mt-10">
         <mat-card-content>
@@ -49,36 +49,102 @@
                     <div class="col-span-1 p-2">
                         <mat-form-field class="w-full" appearance="fill">
                             <mat-label>Seleccionar tipo de producto</mat-label>
-                            <mat-select formControlName="tipoProducto">
-                                <mat-option [value]="1">                                    
+                            <mat-select formControlName="tipoProducto" (selectionChange)="setProductType($event)">
+                                <mat-option [value]="1">
                                     Producto de fábrica
                                 </mat-option>
-                                <mat-option [value]="2">                                    
+                                <mat-option [value]="2">
                                     Producto de compuesto
                                 </mat-option>
                             </mat-select>
                             <mat-error>El <strong>tipo de producto</strong> es requerido</mat-error>
                         </mat-form-field>
                     </div>
-                      
+
                     <div class="col-span-1 p-2">
                         <mat-slide-toggle class="mt-2" [color]="'primary'"
                             formControlName="estado">Estado</mat-slide-toggle>
                     </div>
                 </div>
+            </form>
 
-                <div class="grid grid-cols-4 mt-5">
-                    
+            <div *ngIf="productType=='COMPUESTO'">
+                <form [formGroup]="productInsumoForm">
+                    <div class="grid grid-cols-4 mt-5">
 
-                    <div class="col-span-1 col-start-4">                        
 
-                        <button class="w-full " mat-flat-button [color]="'primary'" (click)="saveProduct()" *ngIf="!edit" >Crear</button>
-                        <button class="w-full " mat-flat-button [color]="'primary'" (click)="updateProduct()" *ngIf="edit">Actualizar</button>
+                        <div class="col-span-4">
+                            <p class="font-light text-lg p-2">Lista de insumos</p>
+
+                         
+                        </div>
+
+                        <div class="col-span-1 p-2" *ngIf="addInsumo">
+                            <mat-form-field class="w-full" appearance="fill">
+                                <mat-label>Insumo</mat-label>
+                                <mat-select formControlName="insumo">
+                                    <mat-option *ngFor="let insumo of insumos" [value]="insumo">
+                                        {{insumo.nombre}} - {{insumo.unidad.nombre}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>El <strong>insumo</strong> es requerido</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-span-1 p-2" *ngIf="addInsumo">
+                            <mat-form-field class="w-full" appearance="fill">
+                                <mat-label>Cantidad de descarga</mat-label>
+                                <input type="number" matInput formControlName="cantidadDescarga">                                
+                                <mat-error>La cantidad de <strong>descarga</strong> es requerida</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-span-1 items-center self-center">
+                            <div class="flex items-center p-2" *ngIf="!addInsumo"><mat-icon class="text-blue-700 hover:text-blue-800 cursor-pointer" (click)="addInsumo = true">add_circle</mat-icon><span>&ensp;Agregar</span></div>
+                            <div class="flex items-center p-2" *ngIf="addInsumo"><mat-icon class="text-blue-700 hover:text-blue-800 cursor-pointer" (click)="saveItemInsumo()">check_circle</mat-icon><span>&ensp;Guardar insumo</span></div>                              
+                        </div>
+
+                        <div class="col-span-4 p-2" *ngIf="productosInsumos.length > 0">
+                            <table class="table w-full">
+                                <thead>
+                                    <tr class="border-blue-400 border">
+                                        <th>Insumo</th>
+                                        <th>Cantidad de descarga</th>
+                                        <th>Unidad</th>
+                                        <th>Eliminar</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let productoInsumo of productosInsumos;let i = index" class="bg-slate-200 border-blue-400 border">
+                                        <td>{{productoInsumo.insumo.nombre}}</td>
+                                        <td>{{productoInsumo.cantidad_descarga}}</td>
+                                        <td>{{productoInsumo.insumo.unidad.nombre}}</td>                                                         
+                                        <td> <button mat-flat-button [color]="'warn'" (click)="deleteItemInsumo(i,productoInsumo)" >Eliminar</button> </td>                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
                     </div>
+                </form>
+            </div>
 
+            <div class="grid grid-cols-4 mt-5">
+
+
+                <div class="col-span-1 col-start-4">
+
+                    <button class="w-full " mat-flat-button [color]="'primary'" (click)="saveProduct()"
+                        *ngIf="!edit">Crear</button>
+                    <button class="w-full " mat-flat-button [color]="'primary'" (click)="updateProduct()"
+                        *ngIf="edit">Actualizar</button>
                 </div>
 
-            </form>
+            </div>
+
+
         </mat-card-content>
     </mat-card>
 

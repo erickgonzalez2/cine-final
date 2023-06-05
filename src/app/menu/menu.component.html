@@ -1,7 +1,7 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <button mat-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
-    <h4>CineApp</h4>
+    <h4>CineGest</h4>
     <span class="example-spacer"></span>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -37,47 +37,70 @@
 
     <mat-divider></mat-divider>
 
-    <mat-list>
-      <mat-list-item class="list-padding" routerLinkActive="active" [routerLink]="['gestion/programacion']">
-        <mat-icon>schedule</mat-icon>&ensp;Programación
-      </mat-list-item>
 
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-icon>food_bank</mat-icon>&ensp;Administración de Productos
-          </mat-expansion-panel-header>
-          <mat-list>
-            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/unidades']">
-              <mat-icon>local_offer</mat-icon>&ensp;Lista de unidades
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/unidades/crear']">
-              <mat-icon>local_offer</mat-icon>&ensp;Agregar unidad
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/insumos']">
-              <mat-icon>kitchen</mat-icon>&ensp;Lista de Insumos
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/insumos/crear']">
-              <mat-icon>kitchen</mat-icon>&ensp;Agregar Insumo
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/']">
-              <mat-icon>local_dining</mat-icon>&ensp;Lista de productos
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/crear']">
-              <mat-icon>local_dining</mat-icon>&ensp;Agregar producto
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/alta']">
-              <mat-icon>add_shopping_cart</mat-icon>&ensp;Alta de mercancías
-            </mat-list-item>
-
-          </mat-list>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </mat-list>
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-icon>person</mat-icon>&ensp;Administración de usuarios
+          <mat-icon>local_movies</mat-icon>&ensp;Administración de Peliculas
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/peliculas/salas']">
+            <mat-icon>event_seat</mat-icon>&ensp;Lista de Salas
+          </mat-list-item>        
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/peliculas/salas/crear']">
+            <mat-icon>event_seat</mat-icon>&ensp;Agregar Salas
+          </mat-list-item>        
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/peliculas']">
+            <mat-icon>movie_filter</mat-icon>&ensp;Lista de Peliculas
+          </mat-list-item>        
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/peliculas/crear']">
+            <mat-icon>movie_filter</mat-icon>&ensp;Agregar Peliculas
+          </mat-list-item>  
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/peliculas/funciones']">
+            <mat-icon>schedule</mat-icon>&ensp;Lista de Funciones
+          </mat-list-item>        
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/peliculas/funciones/crear']">
+            <mat-icon>schedule</mat-icon>&ensp;Agregar Función
+          </mat-list-item>  
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon>food_bank</mat-icon>&ensp;Administración de Productos
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/unidades']">
+            <mat-icon>local_offer</mat-icon>&ensp;Lista de unidades
+          </mat-list-item>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/unidades/crear']">
+            <mat-icon>local_offer</mat-icon>&ensp;Agregar unidad
+          </mat-list-item>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/insumos']">
+            <mat-icon>kitchen</mat-icon>&ensp;Lista de Insumos
+          </mat-list-item>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/insumos/crear']">
+            <mat-icon>kitchen</mat-icon>&ensp;Agregar Insumo
+          </mat-list-item>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/']">
+            <mat-icon>local_dining</mat-icon>&ensp;Lista de productos
+          </mat-list-item>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/crear']">
+            <mat-icon>local_dining</mat-icon>&ensp;Agregar producto
+          </mat-list-item>
+          <mat-list-item routerLinkActive="active" [routerLink]="['gestion/productos/alta']">
+            <mat-icon>add_shopping_cart</mat-icon>&ensp;Alta de mercancías
+          </mat-list-item>
+
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon>person</mat-icon>&ensp;Administración de Usuarios
         </mat-expansion-panel-header>
         <mat-list>
           <mat-list-item routerLinkActive="active" [routerLink]="['gestion/usuarios']">

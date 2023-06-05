@@ -1,0 +1,98 @@
+<div class="w-full p-10">
+
+    <p class="font-light text-xl" *ngIf="!edit">Crear Funcion</p>
+    <p class="font-light text-xl" *ngIf="edit">Editar Funcion</p>
+
+    <mat-card class="mt-10">
+        <mat-card-content>
+
+            <form [formGroup]="funcionForm">
+
+                <div class="grid grid-cols-4">
+
+            
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Pelicula</mat-label>
+                            <mat-select formControlName="pelicula">
+                                <mat-option *ngFor="let pelicula of peliculas" [value]="pelicula">{{pelicula.titulo}}</mat-option>
+                            </mat-select>
+                            <mat-error>El <strong>formato</strong> es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Sala</mat-label>
+                            <mat-select formControlName="sala">
+                                <mat-option *ngFor="let sala of salas" [value]="sala">{{sala.noSala}}</mat-option>                                
+                            </mat-select>
+                            <mat-error>El <strong>formato</strong> es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Precio general</mat-label>
+                            <input type="number" step="0.01" matInput formControlName="precio_general">
+                            <mat-error>El <strong>precio general</strong> es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Precio con descuento</mat-label>
+                            <input type="number" step="0.01" matInput formControlName="precio_desc">
+                            <mat-error>El <strong>precio con descuento</strong> es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2" *ngIf="!todayFunction">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-date-range-input [rangePicker]="picker">
+                                <input  matInput  matStartDate formControlName="start" placeholder="Fecha de inicio">
+                                <input  matInput  matEndDate formControlName="end" placeholder="Fecha de fin">
+                            </mat-date-range-input>
+                            <mat-hint>El selecionar más de un día creará varias funciones</mat-hint>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                            <mat-error>No se permite crear funciones con fechas anteriores</mat-error>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="col-span-1 p-2" *ngIf="todayFunction">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Hora</mat-label>
+                            <input matInput matTimepicker mode="24h" [minDate]="minHourValue"  cancelLabel="Cancelar" okLabel="Aceptar" formControlName="hora">                            
+                            <mat-error>La <strong>hora</strong> es requerida</mat-error>
+                        </mat-form-field>                        
+                    </div>
+
+                    <div class="col-span-1 p-2" *ngIf="!todayFunction">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Hora</mat-label>
+                            <input matInput matTimepicker mode="24h"  cancelLabel="Cancelar" okLabel="Aceptar" formControlName="hora">                            
+                            <mat-error>La <strong>hora</strong> es requerida</mat-error>
+                        </mat-form-field>                        
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-slide-toggle class="mt-2" [color]="'primary'" [(ngModel)]="todayFunction" [ngModelOptions]="{standalone : true}">Función para el día de hoy</mat-slide-toggle>
+                    </div>
+                                                            
+                    <div class="col-span-1 col-start-4 p-2 self-center">
+
+                        <button class="w-full " mat-flat-button [color]="'primary'" (click)="saveFuncion()"
+                            *ngIf="!edit">Crear</button>
+                        <button class="w-full " mat-flat-button [color]="'primary'" (click)="updateFuncion()"
+                            *ngIf="edit">Actualizar</button>
+                    </div>
+
+                </div>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+
+</div>

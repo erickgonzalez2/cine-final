@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Insumo } from 'src/app/models/insumo';
+import { Producto } from 'src/app/models/producto';
+import { ProductoInsumos } from 'src/app/models/producto-insumos';
 import { Unidad } from 'src/app/models/unidad';
 import { environment } from 'src/environments/environment';
 
@@ -60,5 +62,35 @@ export class ProductosService {
 
   getAllInsumos(){
     return this._httpClient.get(environment.API_ENDPOINT+"insumo/all");
+  }
+
+  getProductById(id : number){
+    return this._httpClient.get(environment.API_ENDPOINT+"producto/"+id);
+  }
+
+  saveProducto(producto : Producto,productosInsumos : ProductoInsumos[]){
+    let CreateProductRequest = {
+      producto : producto,
+      productosInsumos : productosInsumos
+    };
+    return this._httpClient.post(environment.API_ENDPOINT+"producto/",CreateProductRequest);
+  }
+
+  updateProducto(producto : Producto,productosInsumos : ProductoInsumos[],id : number){
+    let UpdateProductRequest = {
+      producto : producto,
+      productosInsumos : productosInsumos
+    };
+    return this._httpClient.put(environment.API_ENDPOINT+"producto/update/"+id,UpdateProductRequest); 
+  }
+
+  findProducts(nombres :  string,productType : string[],page : number,chunk : number,tipoOrdenamientoPrecio : number,tipoOrdenamientoStock : number){
+    return this._httpClient.get(environment.API_ENDPOINT+"producto/find"+
+    "?nombres="+ nombres +
+    "&productType="+ productType + 
+    "&page=" + page + 
+    "&chunk="+ chunk + 
+    "&tipoOrdenamientoPrecio="+ tipoOrdenamientoPrecio +
+    "&tipoOrdenamientoStock="+ tipoOrdenamientoStock)
   }
 }

@@ -1,0 +1,83 @@
+<div class="w-full p-5">
+
+
+    <p class="font-light text-xl">Vista general de funciones</p>
+
+
+    <mat-card class="mt-10">
+
+        <mat-card-header>
+            <mat-card-title>Filtrar por</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="mt-5">
+
+            <div class="flex items-center">
+                <div>
+                    <mat-form-field class="text-xs w-80" appearance="fill">
+                        <mat-label>Filtrar por titulo de pelicula</mat-label>
+                        <input matInput placeholder="Titulo" [(ngModel)]="filter">
+                        <mat-icon [color]="'primary'" matSuffix><i class="fa fa-filter fa-sm"></i></mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div class="ml-4">
+                    <mat-form-field class="text-xs w-80" appearance="fill">
+                        <mat-date-range-input class="w-full" [formGroup]="rangeForm" [rangePicker]="picker">
+                            <input matStartDate formControlName="start" placeholder="Fecha de inicio">
+                            <input matEndDate formControlName="end" placeholder="Fecha de fin">
+                        </mat-date-range-input>
+                        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                        <mat-error>Rango inválido</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="flex items-center ml-6">
+                    <button class="h-10 w-40" mat-flat-button [color]="'primary'" (click)="search()">Buscar
+                        <mat-icon>search</mat-icon></button>
+                </div>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+
+
+
+    <mat-card class="mt-5">
+        <mat-card-content class="flex justify-center">
+            <table class="table w-full">
+                <thead>
+                    <tr class="border-blue-400 border">
+                        <th>Fecha de inicio</th>
+                        <th>Fecha de fin</th>
+                        <th>Pelicula</th>
+                        <th>Sala</th>
+                        <th>Precio general</th>
+                        <th>Precio con descuento</th>
+                        <th>Disponible para venta</th>
+                        <th>Cancelar</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="funciones.length > 0">
+                    <tr *ngFor="let funcion of funciones" class="bg-slate-200 border-blue-400 border">
+                        <td>{{funcion.fecha_hora | date: 'dd/MM/yyyy HH:mm'}}</td>
+                        <td>{{funcion.fecha_hora_final | date: 'dd/MM/yyyy HH:mm' }}</td>
+                        <td>{{funcion.pelicula.titulo}}</td>
+                        <td>{{funcion.sala.noSala}}</td>
+                        <td>{{funcion.precio_general}}</td>
+                        <td>{{funcion.precio_desc}}</td>
+                        <td *ngIf="funcion.estado">SI</td>
+                        <td *ngIf="!funcion.estado">NO</td>
+                        <td *ngIf="funcion.estado"><button mat-flat-button [color]="'warn'">Cancelar</button></td>
+                        <td *ngIf="!funcion.estado"> N / A</td>
+                    </tr>
+                </tbody>
+            </table>
+            <mat-paginator class="w-full" [length]="totalFunciones" [pageSize]="20" [pageIndex]="currentPage">
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+
+</div>

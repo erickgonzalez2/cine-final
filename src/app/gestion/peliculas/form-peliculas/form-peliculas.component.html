@@ -1,0 +1,107 @@
+<div class="w-full p-10">
+
+    <p class="font-light text-xl" *ngIf="!edit">Crear Pelicula</p>
+    <p class="font-light text-xl" *ngIf="edit">Editar Pelicula</p>
+
+    <mat-card class="mt-10">
+        <mat-card-content>
+
+            <form [formGroup]="peliculaForm">
+
+                <div class="grid grid-cols-4">
+
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Titulo</mat-label>
+                            <input type="text" matInput formControlName="titulo">
+                            <mat-error>El <strong>titulo</strong> es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Director</mat-label>
+                            <input type="text" matInput formControlName="director">
+                            <mat-error>El <strong>director</strong> es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Clasificacion</mat-label>
+                            <mat-select formControlName="clasificacion">
+                                <mat-option [value]="'AA'">AA</mat-option>
+                                <mat-option [value]="'A'">A</mat-option>
+                                <mat-option [value]="'B'">B</mat-option>
+                                <mat-option [value]="'B-15'">B-15</mat-option>
+                                <mat-option [value]="'C'">C</mat-option>
+                            </mat-select>
+                            <mat-error>La <strong>clasificacion</strong> es requerida</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Duración</mat-label>
+                            <input matInput matTimepicker mode="24h" cancelLabel="Cancelar" okLabel="Aceptar" formControlName="duracion">                            
+                            <mat-error>La <strong>duración</strong> es requerida</mat-error>
+                        </mat-form-field>                        
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Idioma</mat-label>
+                            <mat-select formControlName="idioma">
+                                <mat-option [value]="'INGLES'">Inglés</mat-option>
+                                <mat-option [value]="'ESPAÑOL'">Español</mat-option>                                
+                            </mat-select>
+                            <mat-error>El <strong>idioma</strong> es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Formato</mat-label>
+                            <mat-select formControlName="formato">
+                                <mat-option [value]="'2D'">2D</mat-option>
+                                <mat-option [value]="'3D'">3D</mat-option>                                
+                                <mat-option [value]="'4DX'">4DX</mat-option>                                
+                            </mat-select>
+                            <mat-error>El <strong>formato</strong> es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-slide-toggle class="mt-2" [color]="'primary'"
+                            formControlName="estado">Estado</mat-slide-toggle>
+                    </div>
+
+                    <div class="col-span-1 p-2">
+                        <mat-slide-toggle class="mt-2" [color]="'primary'"
+                            formControlName="subtitulos">Subtitulos</mat-slide-toggle>
+                    </div>
+
+                    <div class="col-span-2 p-2">
+                        <mat-form-field class="w-full" appearance="fill">
+                            <mat-label>Sipnosis</mat-label>
+                            <textarea matInput formControlName="sipnosis"></textarea>
+                        </mat-form-field>
+                    </div>
+                                        
+                    <div class="col-span-1 col-start-4 p-2 self-center">
+
+                        <button class="w-full " mat-flat-button [color]="'primary'" (click)="savePelicula()"
+                            *ngIf="!edit">Crear</button>
+                        <button class="w-full " mat-flat-button [color]="'primary'" (click)="updatePelicula()"
+                            *ngIf="edit">Actualizar</button>
+                    </div>
+
+                </div>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+
+</div>
